@@ -1,6 +1,7 @@
 'use strict';
 
 module.exports = function(d3) {
+  // it appears that each 'plot' object is having their dependencies directly handed to them on initalization
   var scale = require('../scale')(d3),
       accessor = require('../accessor')(),
       plot = require('./plot')(d3.line, d3.area, d3.curveMonotoneX, d3.select),
@@ -13,6 +14,7 @@ module.exports = function(d3) {
 
   return {
     adx: require('./adx')(accessor.adx, plot, plotMixin),
+    arbitrary: line(accessor.value, plot, plotMixin),
     aroon: require('./aroon')(accessor.aroon, plot, plotMixin),
     atr: line(accessor.value, plot, plotMixin),
     atrtrailingstop: require('./atrtrailingstop')(accessor.atrtrailingstop, plot, plotMixin),
@@ -40,7 +42,7 @@ module.exports = function(d3) {
     volume: require('./volume')(accessor.volume, plot, plotMixin),
     vwap: line(accessor.value, plot, plotMixin),
     wilderma: line(accessor.value, plot, plotMixin),
-    williams: require('./williams')(accessor.williams, plot, plotMixin)
+    williams: require('./williams')(accessor.williams, plot, plotMixin),
   };
 };
 
