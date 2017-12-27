@@ -1,12 +1,14 @@
 'use strict';
 
 module.exports = function(indicatorMixin, accessor_ohlc, alpha_init) {  // Injected dependencies
-  return function() { // Closure function
+  return function(n) { // Closure function
     var p = {},  // Container for private, direct access mixed in variables
         previous,
         alpha,
         initialTotal,
         initialCount;
+
+    if(arguments.length === 1) p.name = n;
 
     function indicator(data) {
       indicator.init();
@@ -22,7 +24,12 @@ module.exports = function(indicatorMixin, accessor_ohlc, alpha_init) {  // Injec
     };
 
     function ma(d, i) {
-      var value = indicator.average(p.accessor(d));
+      var value;
+      if (typeof p.name != 'undefined') {
+        value = indicator.average(p.accessor(d, p.name));
+      } else {
+        value = indicator.average(p.accessor(d));
+      }
       if (i+1 < p.period) {
         value = null;
       }

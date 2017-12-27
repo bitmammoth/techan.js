@@ -12,6 +12,7 @@ module.exports = function(d3) {
       vwap = require('./vwap')(indicatorMixin, accessor.ohlc);
 
   return {
+    arbitrary: require('./arbitrary')(indicatorMixin, accessor.ohlc),
     atr: atr,
     atrtrailingstop: require('./atrtrailingstop')(indicatorMixin, accessor.ohlc, atr),
     ema: ema,
