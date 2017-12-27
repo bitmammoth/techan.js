@@ -8,8 +8,9 @@ module.exports = function() {
       close = function(d) { return d.close;},
       volume = function(d) { return d.volume; };
 
-  function accessor(d) {
-    return accessor.c(d);
+  function accessor(d, _) {
+    if(arguments.length < 2) return accessor.c(d);
+    return d[_];
   }
 
   accessor.date = function(_) {

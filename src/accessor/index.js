@@ -1,6 +1,7 @@
 'use strict';
 
 // Provide IDs for all accessors. Default to date, but at least provide an option
+// accessors appear to corrispond with 'plot' objects, which seems to be some augmented d3 objects.
 module.exports = function() {
   return {
     atrtrailingstop: require('./atrtrailingstop'),
