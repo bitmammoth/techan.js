@@ -22,6 +22,8 @@ module.exports = function(d3) {
     financetime: financetime,
 
     plot: {
+      arbitrary: pathWithValueAccessor,
+
       adx: function () {
         return d3.scaleLinear().domain([0, 100]);
       },
@@ -129,6 +131,8 @@ module.exports = function(d3) {
         var values = mapReduceFilter(data, function(d) { return [accessor.sv(d), accessor.ev(d)]; });
         return d3.scaleLinear().domain(d3.extent(values).map(widen(0.04)));
       },
+
+      value: pathWithValueAccessor,
 
       volume: function (data, accessor) {
         accessor = accessor || accessors.ohlc().v;
